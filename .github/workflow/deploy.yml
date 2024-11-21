@@ -1,0 +1,36 @@
+name: CI/CD for Express.js with PM2
+
+on:
+  push:
+    branches:
+      - dev
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+    # 코드 체크아웃
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Node.js 설정
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 22
+
+    # 종속성 설치
+    - name: Install dependencies
+      run: |
+        cd /home/ubuntu/app
+        npm install
+
+    # PM2로 서버 재시작
+    - name: Restart Server
+      run: |
+        cd /home/ubuntu/app
+        pm2 stop express-app || true
+        pm2 start /home/ubuntu/app/express_with_opensearch/app.js --name express-app
+        pm2 save
