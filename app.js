@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
   res.send('Hello, OpenSearch!');
 });
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   logger.info({ message: `Server started on port ${PORT}` });
 });
