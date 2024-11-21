@@ -31,10 +31,10 @@ app.use((err, req, res, next) => {
 // 샘플 라우트
 app.get('/', (req, res) => {
   logger.info({ message: 'Root Endpoint Accessed' });
-  res.send('Hello, OpenSearch!');
+  res.send('CI/CD 꼭 하셔야합니다!');
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT
 app.listen(PORT, () => {
   logger.info({ message: `Server started on port ${PORT}` });
 });
