@@ -38,12 +38,12 @@ jobs:
     - name: Install dependencies
       run: |
         cd /home/ubuntu/app
-        npm install
+        sudo npm install
 
     # PM2로 서버 재시작
     - name: Restart Server
       run: |
         cd /home/ubuntu/app
-        pm2 stop express-app || true
-        pm2 start app.js --name express-app
-        pm2 save
+        sudo pm2 stop express-app || true
+        sudo pm2 start app.js --name express-app
+        sudo pm2 save
