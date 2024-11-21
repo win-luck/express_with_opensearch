@@ -32,5 +32,5 @@ jobs:
       run: |
         cd /home/ubuntu/app
         pm2 stop express-app || true
-        pm2 start /home/ubuntu/app/express_with_opensearch/app.js --name express-app
+        pm2 start /home/ubuntu/app/app.js --name express-app
         pm2 save
