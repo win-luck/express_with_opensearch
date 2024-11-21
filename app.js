@@ -30,7 +30,7 @@ app.use((err, req, res, next) => {
 
 // 샘플 라우트
 app.get('/', (req, res) => {
-  logger.info({ message: 'Root Endpoint Accessed' });
+  //logger.info({ message: 'Root Endpoint Accessed' });
   res.send('CI/CD 꼭 하셔야합니다!');
 });
 
