@@ -15,10 +15,18 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    #  배포 디렉토리 준비
+    - name: Prepare deployment directory
+      run: |
+        sudo mkdir -p /home/ubuntu/app
+        sudo rm -rf /home/ubuntu/app/*
+        sudo cp -r . /home/ubuntu/app
+
     # .env 파일 생성
     - name: Create .env file
       run: |
         echo "${{ secrets.ENV_FILE }}" > /home/ubuntu/app/.env
+        sudo chmod 600 /home/ubuntu/app/.env
 
     # Node.js 설정
     - name: Setup Node.js
@@ -37,5 +45,5 @@ jobs:
       run: |
         cd /home/ubuntu/app
         pm2 stop express-app || true
-        pm2 start /home/ubuntu/app/app.js --name express-app
+        pm2 start app.js --name express-app
         pm2 save
